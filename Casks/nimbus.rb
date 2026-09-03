@@ -18,6 +18,19 @@ cask "nimbus" do
 
   app "Nimbus.app"
 
+  # Unsigned build, so the zip is quarantined on download like any other —
+  # without this, Gatekeeper's spctl assessment rejects it outright
+  # ("no usable signature") since an ad-hoc signature has no trust anchor
+  # at all, and System Settings > Privacy & Security's "Open Anyway" does
+  # not reliably clear that for a fully unsigned app. Stripping quarantine
+  # right after install is what actually makes `brew install` result in an
+  # app that opens.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/Nimbus.app"],
+                   sudo: false
+  end
+
   zap trash: [
     "~/Library/Caches/com.treendz.nimbus",
     "~/Library/Preferences/com.treendz.nimbus.plist",
