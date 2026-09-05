@@ -1,6 +1,6 @@
 cask "nimbus" do
-  version "0.1.41"
-  sha256 "235d5077ce54ce6594bee34e162221d151c8fcf75a81600f249733c5dabc1007"
+  version "0.1.42"
+  sha256 "3be043d5c6af7690fca5ce05dccfec14314d3a1e9e05d8847fbe1ae8c6e947d3"
 
   url "https://github.com/CarlosAllberto/nimbus-desktop-releases/releases/download/v#{version}/Nimbus.zip"
   name "Nimbus"
